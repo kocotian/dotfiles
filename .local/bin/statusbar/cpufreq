@@ -1,0 +1,7 @@
+#!/bin/sh
+CPU0="🔵 $(($(cat /sys/bus/cpu/devices/cpu0/cpufreq/scaling_cur_freq) / 1024)) MHz │"
+CPU1="🟡 $(($(cat /sys/bus/cpu/devices/cpu1/cpufreq/scaling_cur_freq) / 1024)) MHz │"
+CPU2="🟢 $(($(cat /sys/bus/cpu/devices/cpu2/cpufreq/scaling_cur_freq) / 1024)) MHz │"
+CPU3="🔴 $(($(cat /sys/bus/cpu/devices/cpu3/cpufreq/scaling_cur_freq) / 1024)) MHz"
+
+printf "🕰 %s %s %s %s" "$CPU0" "$CPU1" "$CPU2" "$CPU3"

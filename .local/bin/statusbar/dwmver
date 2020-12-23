@@ -1,0 +1,2 @@
+#!/bin/sh
+printf "🪟 %s" "$(dwm -v 2>&1 | sed "s/\\r//g;s/\\n//g")"

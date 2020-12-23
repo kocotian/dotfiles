@@ -1,0 +1,5 @@
+#!/bin/sh
+# pgp key importing utility, often while running yay, there are error
+# while importing keys, just copy key and write:
+# $ pgpimport <key>
+gpg2 --keyserver pool.sks-keyservers.net --recv-keys $1

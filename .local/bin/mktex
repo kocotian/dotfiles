@@ -1,0 +1,12 @@
+#!/bin/sh
+# make tex document, change "author" to your name
+echo "\documentclass{article}
+
+\author{}
+\title{$1}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\end{document}" > "$1.tex"
+$EDITOR "$1.tex"

@@ -1,0 +1,23 @@
+#!/bin/sh
+# Shuffler script
+# Randomly changes all file names in specified directory
+# usage: $ shuffler <directory>
+
+DIR="$1" # getting directory from arg
+cp "$DIR" "${DIR}_shufcp" -rf || exit 1 # copying
+
+CONTENT="`ls "$DIR" | grep "$2$"`" # getting directory content
+SHUFFLED="`echo "$CONTENT" | shuf`" # shuffling directory content
+LINE=0 # setting line to 0
+
+rm "$DIR/"* -rf # removing $DIR content
+
+echo "$SHUFFLED" |
+	while read -r SHUF; do # looping through shuffled $DIR content
+		((LINE++)) # adding line
+		ITERLINE="$(echo "$CONTENT" | sed -n "${LINE}p")" # what to move
+		echo "$ITERLINE -> $SHUF" # verbose
+		mv "${DIR}_shufcp/$ITERLINE" "${DIR}/$SHUF" # verbose
+	done
+
+rm "${DIR}_shufcp" -rf # removing

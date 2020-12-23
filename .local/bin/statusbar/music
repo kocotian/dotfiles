@@ -1,6 +1,10 @@
 #!/bin/sh
 
-filter() { mpc | sed "/^volume:/d;s/\\&/&amp;/g;s/\\[paused\\].*/⏸/g;/\\[playing\\].*/d" | paste -sd ' ' -;}
+filter()
+{
+    MUSIC=$(mpc | sed "/^volume:/d;s/\\[paused\\].*/ ⏸/g;/\\[playing\\].*/d" | paste -sd ' ')
+    printf "🎹 %s" "${MUSIC:-stopped}";
+}
 
 pidof -x mpdup >/dev/null 2>&1 || mpdup >/dev/null 2>&1 &
 

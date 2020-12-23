@@ -1,0 +1,7 @@
+#!/bin/sh
+unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/* -type f | wc -l 2>/dev/null)"
+notify-send --urgency=low "📫 Mail sync" "Synchronizing email..."
+mw sync && { # If you are using older mutt-wizard, ignore this, if you are using newer mutt-wizard, change `sync` to `-Y`
+	newunread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/* -type f | wc -l 2>/dev/null)"
+	[ "$unread" = "$newunread" ] && notify-send "📭 Sync completed!" "No new emails" || notify-send --urgency=critical "📬 Sync completed!" "You have <b>$(($newunread - $unread))</b> new email(s)"
+} || notify-send "📪 Failed to sync mail" "Unable to sync mail"

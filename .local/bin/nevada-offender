@@ -1,0 +1,9 @@
+#!/bin/sh
+# Nevada Offender
+# Wrote for fun as Windows Defender parody
+# Add to your cronjobs to execute with ~3 hours interval
+notify-send "☣️ Started virus scanning"
+TRASH="$(du -a / | tr "[:upper:]" "[:lower:]" | grep windows)"
+[ "$TRASH" = 0 ] && \
+notify-send "✅ Virus scan completed" "You doesn't have viruses" || \
+notify-send "✅ Virus scan completed" "You have <b>$(echo "$TRASH" | wc -l)</b> viruses"

@@ -1,8 +1,24 @@
 # Luke's config for the Zoomer Shell
+# kocotian's later editions and additions
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+# Luke's colorful prompt ([username@host ~]$):
+# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+# My prompt:
+PS1="%{$fg[white]%}%n@%M %{$fg[blue]%}%~ %{$reset_color%}$%b "
+
+# After cd to git repository adds current branch, requires nerd fonts, if don't want delete to...
+gitcd() {
+	\cd $1
+	PS1="%{$fg[white]%}%n@%M %{$fg[blue]%}%~$(git status 2>/dev/null | sed 1q | sed "s/On\ branch/%{$fg[yellow]%}  /g") %{$reset_color%}$%b "
+}
+
+alias cd='gitcd'
+# ...this line
+
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
@@ -75,3 +91,9 @@ bindkey '^e' edit-command-line
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+
+# Load ls colors
+source $HOME/.local/share/lscolors
+
+# Every time terminal starts, display simple fortune message
+fortune && echo
