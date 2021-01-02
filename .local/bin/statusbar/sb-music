@@ -6,7 +6,7 @@ filter()
     printf "🎹 %s" "${MUSIC:-stopped}";
 }
 
-pidof -x mpdup >/dev/null 2>&1 || mpdup >/dev/null 2>&1 &
+pidof -x sb-mpdup >/dev/null 2>&1 || mpdup >/dev/null 2>&1 &
 
 case $BLOCK_BUTTON in
 	1) mpc status | filter ; setsid -f "$TERMINAL" -e ncmpcpp ;;  # right click, pause/unpause
