@@ -26,4 +26,5 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-pacman -Qu | grep -Fcv "[ignored]" | sed "s/^/🎁 /;s/^🎁0$//g"
+PKGS="$(pacman -Qu | grep -Fcv "[ignored]")"
+printf "🎁 $([ $PKGS -gt 0 ] && printf "2")%s" "$PKGS"

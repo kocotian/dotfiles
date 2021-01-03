@@ -26,4 +26,4 @@ update() {
 rx=$(update /sys/class/net/[ew]*/statistics/rx_bytes)
 tx=$(update /sys/class/net/[ew]*/statistics/tx_bytes)
 
-printf "%s%5sB %s%5sB\\n" $([ "$rx" = "0" ] && printf "⚫" || printf "🟢") $(numfmt --to=iec $rx) $([ "$tx" = "0" ] && printf "⚫" || printf "🟢") $(numfmt --to=iec $tx)
+printf "%s%5sB  %s%5sB\\n" $([ "$rx" = "0" ] && printf "⚫" || printf "🟢2") $(numfmt --to=iec $rx) $([ "$tx" = "0" ] && printf "⚫" || printf "🟢2") $(numfmt --to=iec $tx)

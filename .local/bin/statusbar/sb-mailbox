@@ -18,4 +18,5 @@ unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/[Ii][Nn][Bb][Oo][Xx
 pidof mbsync >/dev/null 2>&1 && icon=" 🔃"
 
 # [ "$unread" = "0" ] && [ "$icon" = "" ] || echo "📬 $unread$icon"
-echo "📬 $unread$icon"
+[ "$unread" = "0" ] || color="2"
+echo "📬 $color$unread$icon"

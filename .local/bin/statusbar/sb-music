@@ -2,8 +2,9 @@
 
 filter()
 {
+	[ "$(mpc | grep "\\[playing\\]")" = "" ] || COLOR="3"
     MUSIC=$(mpc | sed "/^volume:/d;s/\\[paused\\].*/ ⏸/g;/\\[playing\\].*/d" | paste -sd ' ')
-    printf "🎹 %s" "${MUSIC:-stopped}";
+    printf "$COLOR🎹 %s" "${MUSIC:-stopped}";
 }
 
 pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
