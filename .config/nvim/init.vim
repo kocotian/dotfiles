@@ -19,6 +19,7 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 call plug#end()
 
+colorscheme codedark
 set title
 set bg=light
 set go=a
@@ -29,6 +30,12 @@ set noshowmode
 set noruler
 set laststatus=0
 set noshowcmd
+set tabstop=4
+set shiftwidth=4
+set noexpandtab
+
+nnoremap j gj
+nnoremap k gk
 
 " Some basics:
 	nnoremap c "_c
@@ -146,3 +153,30 @@ function! ToggleHiddenAll()
     endif
 endfunction
 nnoremap <leader>h :call ToggleHiddenAll()<CR>
+
+" --- NerdTree --- "
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeIgnore = []
+let g:NERDTreeStatusline = ''
+
+" Automaticaly close nvim if NERDTree is only thing left open
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Toggle
+    nnoremap <silent> <C-b> :NERDTreeToggle<CR>
+
+" --- Terminal --- "
+
+" turn terminal to normal mode with escape
+    tnoremap <Esc> <C-\><C-n>
+" disable line numbers on terminal
+    autocmd TermOpen * setlocal nonumber norelativenumber
+" start terminal in insert mode
+    au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+n
+    function! OpenTerminal()
+        split term://zsh
+        resize 10
+    endfunction
+    nnoremap <c-n> :call OpenTerminal()<CR>
