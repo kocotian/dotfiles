@@ -1,11 +1,11 @@
 #!/bin/sh
 C0F="$(($(cat /sys/bus/cpu/devices/cpu0/cpufreq/scaling_cur_freq) / 1024))"
-CPU0="🔵 $([ $C0F -gt 2750 ] && printf "3")$C0F MHz"
+CPU0="🔵 $([ $C0F -gt 2750 ] && printf "1")$C0F MHz"
 C1F="$(($(cat /sys/bus/cpu/devices/cpu1/cpufreq/scaling_cur_freq) / 1024))"
-CPU1="🟡 $([ $C1F -gt 2750 ] && printf "3")$C1F MHz"
+CPU1="🟡 $([ $C1F -gt 2750 ] && printf "1")$C1F MHz"
 C2F="$(($(cat /sys/bus/cpu/devices/cpu2/cpufreq/scaling_cur_freq) / 1024))"
-CPU2="🟢 $([ $C2F -gt 2750 ] && printf "3")$C2F MHz"
+CPU2="🟢 $([ $C2F -gt 2750 ] && printf "1")$C2F MHz"
 C3F="$(($(cat /sys/bus/cpu/devices/cpu3/cpufreq/scaling_cur_freq) / 1024))"
-CPU3="🔴 $([ $C3F -gt 2750 ] && printf "3")$C3F MHz"
+CPU3="🔴 $([ $C3F -gt 2750 ] && printf "1")$C3F MHz"
 
 printf "🕰  %s  %s  %s  %s" "$CPU0" "$CPU1" "$CPU2" "$CPU3"

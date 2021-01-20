@@ -13,15 +13,9 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-# Pulseaudio way
-# [ $(pamixer --get-mute) = true ] && echo 🔇 && exit
-# ALSA way
-[ "$(amixer -M sget Master | grep "Mono" | grep -o "\\[on\\]$")" = "" ] && echo 🔇 && exit
+[ $(pamixer --get-mute) = true ] && echo 🔇 && exit
 
-# Pulseaudio way
-# vol="$(pamixer --get-volume)"
-# ALSA way
-vol="$(amixer -M sget Master | grep "Mono" | grep -o "[0-9]*%")"
+vol="$(pamixer --get-volume)"
 
 if [ "$vol" -gt "70" ]; then
 	icon="🔊"
@@ -35,7 +29,4 @@ if [ "$vol" -gt "100" ]; then
 	color="1"
 fi
 
-# Pulseaudio way
-# echo "$icon $color$vol%"
-# ALSA way
-echo "$icon $color$vol"
+echo "$icon $color$vol%"

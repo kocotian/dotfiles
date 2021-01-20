@@ -9,4 +9,12 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-free --mebi | sed -n '2{p;q}' | awk '{printf ("🧠 %2.2fGiB / %2.2fGiB\n", ( $3 / 1024), ($2 / 1024))}'
+MEM="$(free --mebi | sed -n '2{p;q}')"
+COL="$(if [ "$(echo $MEM | cut -f3 -d' ')" -lt 0.90 ]; then
+	echo2
+elif [ "$(echo $MEM | cut -f3 -d' ')" -gt 2.50 ]; then
+	echo1
+elif [ "$(echo $MEM | cut -f3 -d' ')" -gt 1.00 ]; then
+	echo3
+fi)"
+echo "$MEM" | awk "{printf (\"🧠 $COL%2.2fGiB / %2.2fGiB\\n\", (\$3 / 1024), (\$2 / 1024))}"

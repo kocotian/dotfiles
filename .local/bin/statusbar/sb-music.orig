@@ -2,7 +2,7 @@
 
 filter()
 {
-	[ "$(mpc | grep "\\[playing\\]")" = "" ] || COLOR="2"
+	[ "$(mpc | grep "\\[playing\\]")" = "" ] || COLOR="3"
     MUSIC=$(mpc | sed "/^volume:/d;s/\\[paused\\].*/ ⏸/g;/\\[playing\\].*/d" | paste -sd ' ')
     printf "$COLOR🎹 %s" "${MUSIC:-stopped}";
 }
