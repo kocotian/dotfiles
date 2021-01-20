@@ -1,0 +1,17 @@
+#!/bin/sh
+
+toggle() { amixer sset Master toggle ;}
+mute() { amixer sset Master mute ;}
+inc() { amixer sset Master "$1"dB+ ;}
+dec() { amixer sset Master "$1"dB- ;}
+
+case "$1" in
+	toggle) toggle  ;;
+	mute)   mute    ;;
+	inc)    inc 1.0 ;;
+	dec)    dec 1.0 ;;
+	INC)    inc 5.0 ;;
+	DEC)    dec 5.0 ;;
+esac > /dev/null
+
+pkill -RTMIN+10 dwmblocks
