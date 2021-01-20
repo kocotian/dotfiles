@@ -1,2 +1,2 @@
 #!/bin/sh
-[ "$(ls -l /usr/bin/notify-send | grep rwx)" = "" ] && echo -n "🔴 1disabled" || echo -n "🟢 2enabled"
+[ "$(ls -l /usr/bin/notify-send | grep rwx)" = "" ] && echo -n "🔴1" || echo -n "🟢2"
