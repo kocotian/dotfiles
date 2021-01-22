@@ -8,6 +8,7 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
@@ -17,9 +18,11 @@ Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
+Plug 'mattn/emmet-vim'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
-colorscheme codedark
+colorscheme code16
 set title
 set bg=light
 set go=a
@@ -179,4 +182,83 @@ let g:NERDTreeStatusline = ''
         split term://zsh
         resize 10
     endfunction
-    nnoremap <c-n> :call OpenTerminal()<CR>
+    nnoremap <c-t> :call OpenTerminal()<CR>
+
+" Abbrevs
+	" General
+	vnoremap ;s :sort<CR>
+	inoremap ;M <++>
+
+	" Spaces
+	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space><Space> <Esc>/<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>d<Space> <Esc>/<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>k<Space> <Esc>/<+++><CR>5s
+
+	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>p<Space> <Esc>?<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>dp<Space> <Esc>?<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>kp<Space> <Esc>?<+++><CR>5s
+
+	" HTML, PHP
+	autocmd FileType html,php inoremap ;! <!DOCTYPE html><CR><html><CR><head><CR><meta charset="UTF-8" /><CR><title><+++></title><CR><++><CR></head><CR><body><CR><++><CR></body><CR></html><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;o <CR><+++><CR><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;1 <h1><+++></h1><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;2 <h2><+++></h2><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;3 <h3><+++></h3><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;4 <h4><+++></h4><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;5 <h5><+++></h5><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;6 <h6><+++></h6><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;b <b><+++></b><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;i <i><+++></i><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;u <u><+++></u><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;st <s><+++></s><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;I <img src="" /><Esc>3li
+	autocmd FileType html,php inoremap ;p <p><+++></p><Esc>?<+++><CR>4s
+	autocmd FileType html,php inoremap ;d <div><CR><++><CR></div><Esc>?<++><CR>4s
+	autocmd FileType html,php inoremap ;Dc <div class="<+++>"><++></div><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;sp <span><+++></span><Esc>?<+++><CR>4s
+	autocmd FileType html,php inoremap ;sup <sup><+++></sup><Esc>?<+++><CR>4s
+	autocmd FileType html,php inoremap ;sub <sub><+++></sub><Esc>?<+++><CR>4s
+	autocmd FileType html,php inoremap ;t <Tagname><++></Tagname><Esc>2?Tagname<CR>
+	autocmd FileType html noremap ;: <Esc>:set ft=php<CR>
+	autocmd FileType php noremap ;: <Esc>:set ft=html<CR>
+
+	" C
+	autocmd FileType c,cpp inoremap ;! #include <stdio.h><CR><CR>int<CR>main(int argc, char *argv[])<CR>{<CR><+++><CR>}<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;in #include <<+++>><CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;IS #include <stdio.h><CR>#include <stdlib.h><CR>#include <string.h><CR>#include <unistd.h><CR><CR>
+	autocmd FileType c,cpp inoremap ;de #define<Space>
+	autocmd FileType c,cpp inoremap ;V <+++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;vi int <+++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;vc char <+++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;vs char *<+++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;vp <+++> *<++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;fc <+++>(<++>);<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;fn <+++>(<++>)<CR>{<CR><++><CR>}<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;mm int<CR>main(int argc, char *argv[])<CR>{<CR><+++><CR>}<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;mv int<CR>main(void)<CR>{<CR><+++><CR>}<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;cm <++> /* <+++> */<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;co <++><Esc>o/* <+++> */<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;cO <++><Esc>O/* <+++> */<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;ca <++><Esc>A<Space>/* <+++> */<Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;ci <++><Esc>I/* <+++> */<Space><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;pf printf("<+++>");<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;if if (<+++>) {<CR><++><CR>} <++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;ei else if (<+++>) {<CR><++><CR>} <++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;el else {<CR><+++><CR>}<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;wh while (<+++>) {<CR><++><CR>}<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;fo for (<+++>) {<CR><++><CR>}<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;do do {<CR><++><CR>} while (<+++>);<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;st typedef struct {<CR><++><CR>} <+++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;un typedef union {<CR><++><CR>} <+++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;en typedef enum { <++> } <+++>;<CR><++><Esc>?<+++><CR>5s
+
+
+	" VimWiki
+	autocmd FileType vimwiki inoremap ;1 = <+++> =<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType vimwiki inoremap ;2 == <+++> ==<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType vimwiki inoremap ;3 === <+++> ===<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType vimwiki inoremap ;4 ==== <+++> ====<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType vimwiki inoremap ;5 ===== <+++> =====<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType vimwiki inoremap ;b *<+++>* <++><Esc>?<+++><CR>5s
+	autocmd FileType vimwiki inoremap ;i _<+++>_ <++><Esc>?<+++><CR>5s
+	autocmd FileType vimwiki inoremap ;l [[<+++>]]<Esc>?<+++><CR>5s
