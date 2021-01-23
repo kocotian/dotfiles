@@ -10,16 +10,16 @@ hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name="codedark"
+let g:colors_name="code16"
 
 " Highlighting function (inspiration from https://github.com/chriskempson/base16-vim)
-let g:codedark_term256=1
+let g:code16_term256=1
 fun! <sid>hi(group, fg, bg, attr, sp)
   if !empty(a:fg)
-    exec "hi " . a:group . " guifg=" . a:fg.gui . " ctermfg=" . (g:codedark_term256 ? a:fg.cterm256 : a:fg.cterm)
+    exec "hi " . a:group . " guifg=" . a:fg.gui . " ctermfg=" . (g:code16_term256 ? a:fg.cterm256 : a:fg.cterm)
   endif
   if !empty(a:bg)
-    exec "hi " . a:group . " guibg=" . a:bg.gui . " ctermbg=" . (g:codedark_term256 ? a:bg.cterm256 : a:bg.cterm)
+    exec "hi " . a:group . " guibg=" . a:bg.gui . " ctermbg=" . (g:code16_term256 ? a:bg.cterm256 : a:bg.cterm)
   endif
   if a:attr != ""
     exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
@@ -102,8 +102,8 @@ let s:cdSearch = {'gui': '#4C4E50', 'cterm': s:cterm0A, 'cterm256': '236'}
 
 " Syntax colors:
 
-if !exists("g:codedark_conservative")
-    let g:codedark_conservative=0
+if !exists("g:code16_conservative")
+    let g:code16_conservative=0
 endif
 
 let s:cdGray = {'gui': '#808080', 'cterm': s:cterm04, 'cterm256': '08'}
@@ -111,19 +111,19 @@ let s:cdViolet = {'gui': '#646695', 'cterm': s:cterm04, 'cterm256': '05'}
 let s:cdBlue = {'gui': '#569CD6', 'cterm': s:cterm0D, 'cterm256': '12'}
 let s:cdDarkBlue = {'gui': '#223E55', 'cterm': s:cterm0D, 'cterm256': '04'}
 let s:cdLightBlue = {'gui': '#9CDCFE', 'cterm': s:cterm0C, 'cterm256': '14'}
-if g:codedark_conservative | let s:cdLightBlue = s:cdFront | endif
+if g:code16_conservative | let s:cdLightBlue = s:cdFront | endif
 let s:cdGreen = {'gui': '#608B4E', 'cterm': s:cterm0B, 'cterm256': '02'}
 let s:cdBlueGreen = {'gui': '#4EC9B0', 'cterm': s:cterm0F, 'cterm256': '06'}
 let s:cdLightGreen = {'gui': '#FFC107', 'cterm': s:cterm09, 'cterm256': '10'}
 let s:cdRed = {'gui': '#F44747', 'cterm': s:cterm08, 'cterm256': '01'}
 let s:cdOrange = {'gui': '#CE9178', 'cterm': s:cterm0F, 'cterm256': '03'}
 let s:cdLightRed = {'gui': '#D16969', 'cterm': s:cterm08, 'cterm256': '09'}
-if g:codedark_conservative | let s:cdLightRed = s:cdOrange | endif
+if g:code16_conservative | let s:cdLightRed = s:cdOrange | endif
 let s:cdYellowOrange = {'gui': '#D7BA7D', 'cterm': s:cterm0A, 'cterm256': '07'}
 let s:cdYellow = {'gui': '#DCDCAA', 'cterm': s:cterm0A, 'cterm256': '11'}
-if g:codedark_conservative | let s:cdYellow = s:cdFront | endif
+if g:code16_conservative | let s:cdYellow = s:cdFront | endif
 let s:cdPink = {'gui': '#C586C0', 'cterm': s:cterm0E, 'cterm256': '13'}
-if g:codedark_conservative | let s:cdPink = s:cdBlue | endif
+if g:code16_conservative | let s:cdPink = s:cdBlue | endif
 
 " Vim editor colors
 "    <sid>hi(GROUP, FOREGROUND, BACKGROUND, ATTRIBUTE, SPECIAL)
