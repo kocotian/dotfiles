@@ -37,8 +37,19 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
+" j & k goes one visible line down, not one physical
 nnoremap j gj
 nnoremap k gk
+
+" <C-O> is just o, but without insert mode
+nnoremap <C-O> o<esc>
+
+" Compilation and others
+noremap <F8> :Vimwiki2HTML<CR>
+noremap <F9> :!make<CR>
+noremap <F10> :!make install<CR>
+noremap <F11> :!compiler %<CR>
+noremap <F12> :!sent %<CR>
 
 " Some basics:
 	nnoremap c "_c
@@ -55,8 +66,9 @@ nnoremap k gk
 	vnoremap . :normal .<CR>
 " Goyo plugin makes text more readable when writing prose:
 	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
-" Spell-check set to <leader>o, 'o' for 'orthography':
-	map <leader>o :setlocal spell! spelllang=en_us<CR>
+" Spell-check set to Shift+<F1> (en) and Shift+<F2> (pl):
+	map <F13> :setlocal spell! spelllang=en<CR>
+	map <F14> :setlocal spell! spelllang=pl<CR>
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
 
@@ -107,7 +119,7 @@ nnoremap k gk
 " Ensure files are read as what I want:
 	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 	map <leader>v :VimwikiIndex
-	let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+	let g:vimwiki_list = [{'path': '~/dox/vimwiki', 'syntax': 'default', 'ext': '.wiki'}]
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
