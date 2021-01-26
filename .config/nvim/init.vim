@@ -14,7 +14,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
 Plug 'lukesmithxyz/vimling'
-Plug 'vimwiki/vimwiki'
+Plug 'kocotian/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
@@ -197,6 +197,8 @@ let g:NERDTreeStatusline = ''
 	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>p<Space> <Esc>?<++><CR>4s
 	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>dp<Space> <Esc>?<++><CR>ddi
 	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>kp<Space> <Esc>?<+++><CR>5s
+
+	autocmd FileType html,php,c,cpp,vimwiki nnoremap <Space> i<Space><Esc>l
 
 	" HTML, PHP
 	autocmd FileType html,php inoremap ;! <!DOCTYPE html><CR><html><CR><head><CR><meta charset="UTF-8" /><CR><title><+++></title><CR><++><CR></head><CR><body><CR><++><CR></body><CR></html><Esc>?<+++><CR>5s
