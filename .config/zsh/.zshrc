@@ -8,12 +8,12 @@ autoload -U colors && colors	# Load colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # My prompt:
-PS1="%{$fg[white]%}%n@%M %{$fg[blue]%}%~ %{$reset_color%}$%b "
+PS1="%B%{$fg[white]%}%n@%M %{$fg[yellow]%}%~ %{$reset_color%}$%b "
 
 # After cd to git repository adds current branch, requires nerd fonts, if don't want delete to...
 gitcd() {
 	\cd $1
-	PS1="%{$fg[white]%}%n@%M %{$fg[blue]%}%~$(git status 2>/dev/null | sed 1q | sed "s/On\ branch/%{$fg[yellow]%}  /g") %{$reset_color%}$%b "
+	PS1="%B%{$fg[white]%}%n@%M %{$fg[yellow]%}%~$(git status 2>/dev/null | sed 1q | sed "s/On\ branch/%{$fg[yellow]%}  /g") %{$reset_color%}$%b "
 }
 
 alias cd='gitcd'
