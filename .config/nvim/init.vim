@@ -202,15 +202,15 @@ let g:NERDTreeStatusline = ''
 	inoremap ;M <++>
 
 	" Spaces
-	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space><Space> <Esc>/<++><CR>4s
-	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>d<Space> <Esc>/<++><CR>ddi
-	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>k<Space> <Esc>/<+++><CR>5s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space><Space> <Esc>/<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>d<Space> <Esc>/<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>k<Space> <Esc>/<+++><CR>5s
 
-	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>p<Space> <Esc>?<++><CR>4s
-	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>dp<Space> <Esc>?<++><CR>ddi
-	autocmd FileType html,php,c,cpp,vimwiki inoremap <Space>kp<Space> <Esc>?<+++><CR>5s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>p<Space> <Esc>?<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>dp<Space> <Esc>?<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>kp<Space> <Esc>?<+++><CR>5s
 
-	autocmd FileType html,php,c,cpp,vimwiki nnoremap <Space> i<Space><Esc>l
+	autocmd FileType html,php,c,cpp,vimwiki,tex nnoremap <Space> i<Space><Esc>l
 
 	" HTML, PHP
 	autocmd FileType html,php inoremap ;! <!DOCTYPE html><CR><html><CR><head><CR><meta charset="UTF-8" /><CR><title><+++></title><CR><++><CR></head><CR><body><CR><++><CR></body><CR></html><Esc>?<+++><CR>5s
@@ -225,13 +225,14 @@ let g:NERDTreeStatusline = ''
 	autocmd FileType html,php inoremap ;i <i><+++></i><++><Esc>?<+++><CR>5s
 	autocmd FileType html,php inoremap ;u <u><+++></u><++><Esc>?<+++><CR>5s
 	autocmd FileType html,php inoremap ;st <s><+++></s><++><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;a <a href="<+++>"><++></a><Esc>?<+++><CR>5s
 	autocmd FileType html,php inoremap ;I <img src="" /><Esc>3li
-	autocmd FileType html,php inoremap ;p <p><+++></p><Esc>?<+++><CR>4s
+	autocmd FileType html,php inoremap ;p <p><+++></p><Esc>?<+++><CR>5s
 	autocmd FileType html,php inoremap ;d <div><CR><++><CR></div><Esc>?<++><CR>4s
 	autocmd FileType html,php inoremap ;Dc <div class="<+++>"><++></div><Esc>?<+++><CR>5s
-	autocmd FileType html,php inoremap ;sp <span><+++></span><Esc>?<+++><CR>4s
-	autocmd FileType html,php inoremap ;sup <sup><+++></sup><Esc>?<+++><CR>4s
-	autocmd FileType html,php inoremap ;sub <sub><+++></sub><Esc>?<+++><CR>4s
+	autocmd FileType html,php inoremap ;sp <span><+++></span><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;sup <sup><+++></sup><Esc>?<+++><CR>5s
+	autocmd FileType html,php inoremap ;sub <sub><+++></sub><Esc>?<+++><CR>5s
 	autocmd FileType html,php inoremap ;t <Tagname><++></Tagname><Esc>2?Tagname<CR>
 	autocmd FileType html noremap ;: <Esc>:set ft=php<CR>
 	autocmd FileType php noremap ;: <Esc>:set ft=html<CR>
@@ -241,11 +242,10 @@ let g:NERDTreeStatusline = ''
 	autocmd FileType c,cpp inoremap ;in #include <<+++>><CR><++><Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;IS #include <stdio.h><CR>#include <stdlib.h><CR>#include <string.h><CR>#include <unistd.h><CR><CR>
 	autocmd FileType c,cpp inoremap ;de #define<Space>
-	autocmd FileType c,cpp inoremap ;V <+++>;<CR><++><Esc>?<+++><CR>5s
-	autocmd FileType c,cpp inoremap ;vi int <+++>;<CR><++><Esc>?<+++><CR>5s
-	autocmd FileType c,cpp inoremap ;vc char <+++>;<CR><++><Esc>?<+++><CR>5s
-	autocmd FileType c,cpp inoremap ;vs char *<+++>;<CR><++><Esc>?<+++><CR>5s
-	autocmd FileType c,cpp inoremap ;vp <+++> *<++>;<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;vi int
+	autocmd FileType c,cpp inoremap ;vc char
+	autocmd FileType c,cpp inoremap ;vs char *
+	autocmd FileType c,cpp inoremap ;vp <+++> *<++>
 	autocmd FileType c,cpp inoremap ;fc <+++>(<++>);<CR><++><Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;fn <+++>(<++>)<CR>{<CR><++><CR>}<Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;mm int<CR>main(int argc, char *argv[])<CR>{<CR><+++><CR>}<Esc>?<+++><CR>5s
@@ -265,7 +265,11 @@ let g:NERDTreeStatusline = ''
 	autocmd FileType c,cpp inoremap ;st typedef struct {<CR><++><CR>} <+++>;<CR><++><Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;un typedef union {<CR><++><CR>} <+++>;<CR><++><Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;en typedef enum { <++> } <+++>;<CR><++><Esc>?<+++><CR>5s
-
+	autocmd FileType c,cpp inoremap ;PP <++><Esc>f)i,<Space>
+	autocmd FileType c,cpp inoremap ;Ps %s<++><Esc>f)i,<Space>
+	autocmd FileType c,cpp inoremap ;Pd %d<++><Esc>f)i,<Space>
+	autocmd FileType c,cpp inoremap ;Pc %c<++><Esc>f)i,<Space>
+	autocmd FileType c,cpp inoremap ;Pld %ld<++><Esc>f)i,<Space>
 
 	" VimWiki
 	autocmd FileType vimwiki inoremap ;1 = <+++> =<CR><++><Esc>?<+++><CR>5s
@@ -276,3 +280,14 @@ let g:NERDTreeStatusline = ''
 	autocmd FileType vimwiki inoremap ;b *<+++>* <++><Esc>?<+++><CR>5s
 	autocmd FileType vimwiki inoremap ;i _<+++>_ <++><Esc>?<+++><CR>5s
 	autocmd FileType vimwiki inoremap ;l [[<+++>]]<Esc>?<+++><CR>5s
+
+	" LaTeX
+	autocmd FileType tex inoremap ;! \documentclass{article}<CR>\author{<+++>}<CR>\title{<++>}<CR><CR>\begin{document}<CR>\maketitle<CR>\tableofcontents<CR><CR><++><CR>\end{document}<Esc>?<+++><CR>5s
+	autocmd FileType tex inoremap ;bf \textbf{} <++><Esc>T{i
+	autocmd FileType tex inoremap ;it \textit{} <++><Esc>T{i
+	autocmd FileType tex inoremap ;tt \texttt{} <++><Esc>T{i
+	autocmd FileType tex inoremap ;beg \begin{something}<CR><++><CR>\end{something}<Esc>2?something<CR>
+	autocmd FileType tex inoremap ;1 \section{<+++>}<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType tex inoremap ;2 \subsection{<+++>}<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType tex inoremap ;3 \subsubsection{<+++>}<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType tex inoremap ;up \usepackage
