@@ -1,0 +1,74 @@
+#!/usr/bin/tcc -run
+
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+#include "../include/util.c"
+#include "../include/arg.h"
+
+char *argv0;
+
+static void
+usage(void)
+{
+	die("usage: %s [-aA]", argv0);
+}
+
+static void
+strrep(char *str, char from, char to)
+{
+	--str;
+	while(*(++str)) if (*str == from) *str = to;
+}
+
+int
+main(int argc, char *argv[])
+{
+	char command[BUFSIZ], tmpfname[BUFSIZ], mvcommand[BUFSIZ],
+	     i = 0, append = 0, *rfilename;
+	int err; size_t s = BUFSIZ;
+
+	ARGBEGIN {
+	case 'a':
+		append = 1; break;
+	case 'A':
+		append = 0; break;
+	default:
+		usage(); break;
+	} ARGEND;
+
+	if (argc < 1) usage();
+
+	s -= snprintf(command, BUFSIZ, "ffmpeg -i '%s'%s -acodec copy", argv[0], append ? "" : " -map_metadata -1");
+
+	while (++i < argc) {
+		strncat(command, " -metadata '", s);
+		strncat(command, argv[i], (s -= 12));
+		s -= strlen(argv[i]);
+		strncat(command, "'", s--);
+	}
+
+	rfilename = strdup(argv[0]);
+	strrep(rfilename, '/', '_');
+	snprintf(tmpfname, BUFSIZ, "'/tmp/retag.%d.%s'", getpid(), rfilename);
+	free(rfilename);
+
+	strncat(command, " ", s);
+	strncat(command, tmpfname, --s);
+	printf("==> COMMAND: %s\n", command);
+	s -= strlen(tmpfname);
+
+	if ((err = system(command)))
+		die("ffmpeg returned status code -1, aborting");
+
+	snprintf(mvcommand, BUFSIZ, "mv -fv %s '%s'", tmpfname, argv[0]);
+	if ((err = system(mvcommand)))
+		die("moving file returned status code -1, aborting");
+
+	return 0;
+}
+
+/*
+vim:ft=c
+*/
