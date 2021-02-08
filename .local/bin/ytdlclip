@@ -7,7 +7,8 @@ $(xclip -selection clipboard -o)
 $(xclip -selection secondary -o)
 $(xclip -selection buffer-cut -o)"
 CLIP="$(echo "$CLIP" | sed "/^$/d")"
-SEL="$(echo "$CLIP" | dmenu -l 15 | sed 's/!/ytdl:\/\/ytsearch:/g')"
+SELD="$(echo "$CLIP" | dmenu -l 15 -p "Write URL to download and tag")" || exit 1
+SEL="$(echo "$SELD" | sed 's/!/ytdl:\/\/ytsearch:/g')"
 
 file="ytclipdl.$$"
 youtube-dl -f 250,251,249 --no-playlist "$SEL" --output "$file"
