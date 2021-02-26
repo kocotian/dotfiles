@@ -20,6 +20,9 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'mattn/emmet-vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'ernstwi/vim-secret'
+Plug 'hrj/vim-DrawIt'
+Plug 'sukima/xmledit'
 call plug#end()
 
 colorscheme code16
@@ -196,10 +199,18 @@ let g:NERDTreeStatusline = ''
     endfunction
     nnoremap <c-t> :call OpenTerminal()<CR>
 
+let g:xmledit_enable_html = 1
+
 " Abbrevs
 	" General
 	vnoremap ;s :sort<CR>
 	inoremap ;M <++>
+
+	nnoremap <C-S-K> ddkP
+	nnoremap <C-S-J> ddp
+
+	inoremap <C-S-K> <Esc>ddkPi
+	inoremap <C-S-J> <Esc>ddpi
 
 	" Spaces
 	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space><Space> <Esc>/<++><CR>4s
