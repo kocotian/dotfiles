@@ -22,12 +22,13 @@ Plug 'mattn/emmet-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ernstwi/vim-secret'
 Plug 'hrj/vim-DrawIt'
+Plug 'tpope/vim-fugitive'
 Plug 'sukima/xmledit'
 call plug#end()
 
 colorscheme code16
 set title
-set bg=light
+set bg=dark
 set go=a
 set mouse=a
 set nohlsearch
@@ -45,7 +46,7 @@ nnoremap j gj
 nnoremap k gk
 
 " <C-O> is just o, but without insert mode
-nnoremap <C-O> o<esc>
+nnoremap <C-O> o<Esc>
 
 " Compilation and others
 noremap <F8> :Vimwiki2HTML<CR>
@@ -109,6 +110,8 @@ noremap <F12> :!sent %<CR>
 
 " Replace all is aliased to S.
 	nnoremap S :%s//g<Left><Left>
+	nnoremap <C-S> :s//g<Left><Left>
+	vnoremap <C-S> :s//g<Left><Left>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
 	map <leader>c :w! \| !compiler "<c-r>%"<CR>
@@ -200,6 +203,15 @@ let g:NERDTreeStatusline = ''
     nnoremap <c-t> :call OpenTerminal()<CR>
 
 let g:xmledit_enable_html = 1
+autocmd FileType html nnoremap <F24><F24> <Esc><Esc>:!$BROWSER file:///'%:p' &<CR>
+autocmd FileType html nnoremap <F24>q <Esc><Esc>:!qutebrowser file:///'%:p' &<CR>
+autocmd FileType html nnoremap <F24>s <Esc><Esc>:!surf file:///'%:p' &<CR>
+autocmd FileType html nnoremap <F24>c <Esc><Esc>:!chromium file:///'%:p' &<CR>
+
+" Macros
+	let @B = "069lf r\n"
+	nnoremap ;BB 9999@B
+
 
 " Abbrevs
 	" General
@@ -209,6 +221,8 @@ let g:xmledit_enable_html = 1
 	nnoremap <C-S-K> ddkP
 	nnoremap <C-S-J> ddp
 
+	vnoremap <C-S-K> ddkP
+	vnoremap <C-S-J> ddp
 	inoremap <C-S-K> <Esc>ddkPi
 	inoremap <C-S-J> <Esc>ddpi
 
@@ -266,7 +280,7 @@ let g:xmledit_enable_html = 1
 	autocmd FileType c,cpp inoremap ;cO <++><Esc>O/* <+++> */<Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;ca <++><Esc>A<Space>/* <+++> */<Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;ci <++><Esc>I/* <+++> */<Space><Esc>?<+++><CR>5s
-	autocmd FileType c,cpp inoremap ;pf printf("<+++>");<CR><++><Esc>?<+++><CR>5s
+	autocmd FileType c,cpp inoremap ;pf printf("<+++>"<++>);<CR><++><Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;if if (<+++>) {<CR><++><CR>} <++><Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;ei else if (<+++>) {<CR><++><CR>} <++><Esc>?<+++><CR>5s
 	autocmd FileType c,cpp inoremap ;el else {<CR><+++><CR>}<CR><++><Esc>?<+++><CR>5s

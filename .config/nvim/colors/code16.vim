@@ -68,11 +68,11 @@ let s:cdCursorLight = '145'
 let s:cdLineNumber = '08'
 let s:cdLineNumberSel = '03'
 
-let s:cdDiffRedDark = '01'
-let s:cdDiffRedLight = '09'
-let s:cdDiffRedLightLight = '13'
-let s:cdDiffGreenDark = '02'
-let s:cdDiffGreenLight = '10'
+let s:cdDiffRedDark = '22'
+let s:cdDiffRedLight = '124'
+let s:cdDiffRedLightLight = '196'
+let s:cdDiffGreenDark = '22'
+let s:cdDiffGreenLight = '28'
 
 let s:cdSearchFg = '00'
 let s:cdSearchBg = '15'
@@ -192,7 +192,7 @@ call <sid>hi('Ignore', s:cdFront, {}, 'none', {})
 
 call <sid>hi('Error', s:cdColor01, s:cdBack, 'undercurl', {})
 
-call <sid>hi('Todo', s:cdNone, s:cdLeftMid, 'none', {})
+call <sid>hi('Todo', s:cdColor00, s:cdColor02, 'none', {})
 
 " Markdown:
 call <sid>hi('markdownBold', s:cdColor12, {}, 'bold', {})
