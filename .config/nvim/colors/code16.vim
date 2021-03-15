@@ -68,11 +68,11 @@ let s:cdCursorLight = '145'
 let s:cdLineNumber = '08'
 let s:cdLineNumberSel = '03'
 
-let s:cdDiffRedDark = '22'
-let s:cdDiffRedLight = '124'
+let s:cdDiffRedDark = '124'
+let s:cdDiffRedLight = '160'
 let s:cdDiffRedLightLight = '196'
-let s:cdDiffGreenDark = '22'
-let s:cdDiffGreenLight = '28'
+let s:cdDiffGreenDark = '64'
+let s:cdDiffGreenLight = '70'
 
 let s:cdSearchFg = '00'
 let s:cdSearchBg = '15'
@@ -192,7 +192,7 @@ call <sid>hi('Ignore', s:cdFront, {}, 'none', {})
 
 call <sid>hi('Error', s:cdColor01, s:cdBack, 'undercurl', {})
 
-call <sid>hi('Todo', s:cdColor00, s:cdColor02, 'none', {})
+call <sid>hi('Todo', s:cdColor00, s:cdColor01, 'bold', {})
 
 " Markdown:
 call <sid>hi('markdownBold', s:cdColor12, {}, 'bold', {})
@@ -406,6 +406,28 @@ call <sid>hi('luaFuncKeyword', s:cdColor13, {}, 'none', {})
 call <sid>hi('luaLocal', s:cdColor13, {}, 'none', {})
 call <sid>hi('luaBuiltIn', s:cdColor12, {}, 'none', {})
 
+" Diff:
+call <sid>hi('diffRemoved', s:cdColor01, {}, 'none', {})
+call <sid>hi('diffAdded', s:cdColor02, {}, 'none', {})
+call <sid>hi('diffChanged', s:cdColor03, {}, 'none', {})
+
+call <sid>hi('diffLine', s:cdColor03, {}, 'bold', {})
+call <sid>hi('diffSubname', s:cdColor03, {}, 'none', {})
+
+call <sid>hi('diffFile', s:cdColor07, {}, 'none', {})
+call <sid>hi('diffNewFile', s:cdColor07, {}, 'none', {})
+call <sid>hi('diffOldFile', s:cdColor07, {}, 'none', {})
+call <sid>hi('diffIndexLine', s:cdColor07, {}, 'none', {})
+call <sid>hi('diffComment', s:cdColor02, {}, 'italic', {})
+
+call <sid>hi('diffOnly', s:cdColor11, {}, 'none', {})
+call <sid>hi('diffIdentical', s:cdColor11, {}, 'none', {})
+call <sid>hi('diffDiffer', s:cdColor11, {}, 'none', {})
+call <sid>hi('diffBDiffer', s:cdColor11, {}, 'none', {})
+call <sid>hi('diffIsA', s:cdColor11, {}, 'none', {})
+call <sid>hi('diffNoEOL', s:cdColor11, {}, 'none', {})
+call <sid>hi('diffCommon', s:cdColor11, {}, 'none', {})
+
 " Vimwiki:
 call <sid>hi('VimwikiHeader1', s:cdColor01, s:cdNone, 'bold', {})
 call <sid>hi('VimwikiHeader2', s:cdColor03, s:cdNone, 'bold', {})
@@ -427,3 +449,12 @@ call <sid>hi('VimwikiLYellowText', s:cdColor11, s:cdNone, 'bold', {})
 call <sid>hi('VimwikiLBlueText', s:cdColor12, s:cdNone, 'bold', {})
 call <sid>hi('VimwikiLMagentaText', s:cdColor13, s:cdNone, 'bold', {})
 call <sid>hi('VimwikiLCyanText', s:cdColor14, s:cdNone, 'bold', {})
+
+" Dired:
+call <sid>hi('DiredRead', s:cdColor09, s:cdNone, 'bold', {})
+call <sid>hi('DiredWrite', s:cdColor10, s:cdNone, 'bold', {})
+call <sid>hi('DiredExecute', s:cdColor11, s:cdNone, 'bold', {})
+call <sid>hi('DiredRoot', s:cdColor01, s:cdNone, 'bold', {})
+call <sid>hi('DiredUser', s:cdColor15, s:cdNone, 'bold', {})
+call <sid>hi('DiredGroup', s:cdColor15, s:cdNone, 'bold', {})
+call <sid>hi('DiredModifyDate', s:cdColor14, s:cdNone, 'none', {})
