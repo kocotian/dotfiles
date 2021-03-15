@@ -9,6 +9,7 @@ endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'kocotian/vim-dired'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
@@ -20,8 +21,6 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'mattn/emmet-vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'ernstwi/vim-secret'
-Plug 'hrj/vim-DrawIt'
 Plug 'tpope/vim-fugitive'
 Plug 'sukima/xmledit'
 call plug#end()
@@ -125,6 +124,8 @@ noremap <F12> :!sent %<CR>
 " Ensure files are read as what I want:
 	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 	map <leader>v :VimwikiIndex
+	map <leader>dd :DiredHere<CR>
+	map <leader>D :Dired<CR>
 	let g:vimwiki_list = [{'path': '~/dox/vimwiki', 'syntax': 'default', 'ext': '.wiki'}]
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
@@ -212,30 +213,28 @@ autocmd FileType html nnoremap <F24>c <Esc><Esc>:!chromium file:///'%:p' &<CR>
 	let @B = "069lf r\n"
 	nnoremap ;BB 9999@B
 
-
 " Abbrevs
 	" General
 	vnoremap ;s :sort<CR>
 	inoremap ;M <++>
 
-	nnoremap <C-S-K> ddkP
-	nnoremap <C-S-J> ddp
-
-	vnoremap <C-S-K> ddkP
-	vnoremap <C-S-J> ddp
-	inoremap <C-S-K> <Esc>ddkPi
-	inoremap <C-S-J> <Esc>ddpi
+	nnoremap <C-S-K> kkjjddkP
+	nnoremap <C-S-J> jkddp
+	vnoremap <C-S-K> kkjjddkP
+	vnoremap <C-S-J> jkddp
+	inoremap <C-S-K> <Esc>kkjjddkPi
+	inoremap <C-S-J> <Esc>jkddpi
 
 	" Spaces
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space><Space> <Esc>/<++><CR>4s
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>d<Space> <Esc>/<++><CR>ddi
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>k<Space> <Esc>/<+++><CR>5s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space><Space> <Esc>/<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>d<Space> <Esc>/<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>k<Space> <Esc>/<+++><CR>5s
 
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>p<Space> <Esc>?<++><CR>4s
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>dp<Space> <Esc>?<++><CR>ddi
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>kp<Space> <Esc>?<+++><CR>5s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>p<Space> <Esc>?<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>dp<Space> <Esc>?<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>kp<Space> <Esc>?<+++><CR>5s
 
-	autocmd FileType html,php,c,cpp,vimwiki,tex nnoremap <Space> i<Space><Esc>l
+	autocmd FileType html,php,c,cpp,vimwiki,tex nnoremap ;<Space> i<Space><Esc>l
 
 	" HTML, PHP
 	autocmd FileType html,php inoremap ;! <!DOCTYPE html><CR><html><CR><head><CR><meta charset="UTF-8" /><CR><title><+++></title><CR><++><CR></head><CR><body><CR><++><CR></body><CR></html><Esc>?<+++><CR>5s
@@ -315,4 +314,4 @@ autocmd FileType html nnoremap <F24>c <Esc><Esc>:!chromium file:///'%:p' &<CR>
 	autocmd FileType tex inoremap ;1 \section{<+++>}<CR><++><Esc>?<+++><CR>5s
 	autocmd FileType tex inoremap ;2 \subsection{<+++>}<CR><++><Esc>?<+++><CR>5s
 	autocmd FileType tex inoremap ;3 \subsubsection{<+++>}<CR><++><Esc>?<+++><CR>5s
-	autocmd FileType tex inoremap ;up \usepackage
+	autocmd FileType tex inoremap ;up \usepackage{<+++>}<Esc>?<+++><CR>5s
