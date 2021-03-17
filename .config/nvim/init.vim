@@ -130,6 +130,7 @@ noremap <F12> :!sent %<CR>
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
+	autocmd BufRead,BufNewFile *.asm set filetype=nasm
 
 " Save file as sudo on files that require root permission
 	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
@@ -209,6 +210,11 @@ autocmd FileType html nnoremap <F24>q <Esc><Esc>:!qutebrowser file:///'%:p' &<CR
 autocmd FileType html nnoremap <F24>s <Esc><Esc>:!surf file:///'%:p' &<CR>
 autocmd FileType html nnoremap <F24>c <Esc><Esc>:!chromium file:///'%:p' &<CR>
 
+" Scratch
+	autocmd BufRead,BufNewFile scratch.* set filetype=vimwiki
+	autocmd BufRead,BufNewFile scratch.* normal G
+	autocmd BufRead,BufNewFile scratch.* startinsert
+
 " Macros
 	let @B = "069lf r\n"
 	nnoremap ;BB 9999@B
@@ -226,9 +232,13 @@ autocmd FileType html nnoremap <F24>c <Esc><Esc>:!chromium file:///'%:p' &<CR>
 	inoremap <C-S-J> <Esc>jkddpi
 
 	" Spaces
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space><Space> <Esc>/<++><CR>4s
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>d<Space> <Esc>/<++><CR>ddi
-	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>k<Space> <Esc>/<+++><CR>5s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space><Space> <Esc>0/<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>d<Space> <Esc>0/<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>k<Space> <Esc>0/<+++><CR>5s
+
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>n<Space> <Esc>/<++><CR>4s
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>dn<Space> <Esc>/<++><CR>ddi
+	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap <Space>kn<Space> <Esc>/<+++><CR>5s
 
 	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>p<Space> <Esc>?<++><CR>4s
 	autocmd FileType html,php,c,cpp,vimwiki,tex inoremap ;<Space>dp<Space> <Esc>?<++><CR>ddi
@@ -304,6 +314,19 @@ autocmd FileType html nnoremap <F24>c <Esc><Esc>:!chromium file:///'%:p' &<CR>
 	autocmd FileType vimwiki inoremap ;b *<+++>* <++><Esc>?<+++><CR>5s
 	autocmd FileType vimwiki inoremap ;i _<+++>_ <++><Esc>?<+++><CR>5s
 	autocmd FileType vimwiki inoremap ;l [[<+++>]]<Esc>?<+++><CR>5s
+
+	autocmd FileType vimwiki inoremap ;,r ,r,r<Esc>hi
+	autocmd FileType vimwiki inoremap ;,g ,g,g<Esc>hi
+	autocmd FileType vimwiki inoremap ;,y ,y,y<Esc>hi
+	autocmd FileType vimwiki inoremap ;,b ,b,b<Esc>hi
+	autocmd FileType vimwiki inoremap ;,m ,m,m<Esc>hi
+	autocmd FileType vimwiki inoremap ;,c ,c,c<Esc>hi
+	autocmd FileType vimwiki inoremap ;,R ,R,R<Esc>hi
+	autocmd FileType vimwiki inoremap ;,G ,G,G<Esc>hi
+	autocmd FileType vimwiki inoremap ;,Y ,Y,Y<Esc>hi
+	autocmd FileType vimwiki inoremap ;,B ,B,B<Esc>hi
+	autocmd FileType vimwiki inoremap ;,M ,M,M<Esc>hi
+	autocmd FileType vimwiki inoremap ;,C ,C,C<Esc>hi
 
 	" LaTeX
 	autocmd FileType tex inoremap ;! \documentclass{article}<CR>\author{<+++>}<CR>\title{<++>}<CR><CR>\begin{document}<CR>\maketitle<CR>\tableofcontents<CR><CR><++><CR>\end{document}<Esc>?<+++><CR>5s

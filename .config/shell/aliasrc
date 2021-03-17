@@ -38,6 +38,11 @@ alias \
     cLO="curl -LO" \
     scim="sc-im" \
     gc="git clone" \
+    im="convert" \
+	l="ls -l" \
+	ex="vim -e" \
+	dired="vim -c DiredHere" \
+	G="vim -c G"
 
 alias \
 	magit="nvim -c MagitOnly" \

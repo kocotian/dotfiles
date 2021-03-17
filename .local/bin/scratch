@@ -1,0 +1,9 @@
+#!/bin/sh
+cd /tmp
+echo "%% This is a temporary buffer for text." > scratch.$$
+echo "%% Do anything here, good luck!" > scratch.$$
+echo "%%" >> scratch.$$
+fortune -s | sed 's/^/%% /' >> scratch.$$
+echo >> scratch.$$
+echo >> scratch.$$
+vim scratch.$$
